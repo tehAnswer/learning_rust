@@ -13,7 +13,13 @@ fn main() {
     let mut console_input = io::stdin();
     console_input.read_line(&mut guess).ok().expect("OMFG guy, you force a panic. OMFG.");
 
-    let guess: u32 = guess.trim().parse().ok().expect("CMON man, A NUMBER. Friggin users..."); 
+    let guess: u32 = match guess.trim().parse() {
+      Ok(num) => num,
+      Err(_) => {
+        println!("WTF.");
+        continue
+      }
+    }; 
 
     println!("You said {} and it was {}", guess, number);
     match guess.cmp(&number) {
