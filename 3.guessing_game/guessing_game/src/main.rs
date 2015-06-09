@@ -5,9 +5,10 @@ use rand::Rng;
 use std::cmp::Ordering;
 
 fn main() {
-    println!("Guess the number I got in mind.");
-    println!("-----------");
-    let number = rand::thread_rng().gen_range(1, 101);
+  println!("Guess the number I got in mind.");
+  println!("-----------");
+  loop {
+    let number = rand::thread_rng().gen_range(1, 6);
     let mut guess = String::new();
     let mut console_input = io::stdin();
     console_input.read_line(&mut guess).ok().expect("OMFG guy, you force a panic. OMFG.");
@@ -18,6 +19,10 @@ fn main() {
     match guess.cmp(&number) {
       Ordering::Less => println!("Too small!"),
       Ordering::Greater => println!("Too much!"),
-      Ordering::Equal => println!("You got this!"),
+      Ordering::Equal => {
+        println!("You got this!");
+        break;
+      }
     }
+  }
 }
