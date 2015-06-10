@@ -1,0 +1,4 @@
+[root]
+name = "eating_philosophers"
+version = "0.1.0"
+
